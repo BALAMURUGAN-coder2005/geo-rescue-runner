@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GEO-RESCUE RUNNER</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap');
+    
+    :root {
+      /* Dark Theme */
+      --cyan: #00f3ff;
+      --pink: #ff00ff;
+      --yellow: #f3ff00;
+      --red: #ff003c;
+      --bg-dark: #0a0a0c;
+      --bg-panel: rgba(15, 15, 20, 0.9);
+      --text-main: #f0f0f0;
+      --grid-opacity: 0.05;
+      --panel-border: rgba(0, 243, 255, 0.2);
+      --accent-soft: rgba(0, 243, 255, 0.05);
+    }
+
+    body.light-theme {
+      /* Light Theme */
+      --cyan: #005a9e;
+      --pink: #b4009e;
+      --yellow: #8a6d00;
+      --red: #a40000;
+      --bg-dark: #f4f7f9;
+      --bg-panel: rgba(255, 255, 255, 0.95);
+      --text-main: #1a1a1c;
+      --grid-opacity: 0.15;
+      --panel-border: rgba(0, 90, 158, 0.2);
+      --accent-soft: rgba(0, 90, 158, 0.05);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      user-select: none;
+      min-height: 100vh;
+      width: 100vw;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 3px; }
+
+    .font-mono-tech { font-family: 'Share Tech Mono', monospace; }
+    .font-orbitron { font-family: 'Orbitron', sans-serif; }
+
+    /* Theme-aware background grid */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, var(--cyan) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--cyan) 1px, transparent 1px);
+      background-size: 30px 30px;
+      opacity: var(--grid-opacity);
+      pointer-events: none;
+      z-index: -1;
+      transition: opacity 0.4s ease;
+    }
+
+    .glass-panel {
+      background: var(--bg-panel);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--panel-border);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: background 0.4s ease, border 0.4s ease;
+    }
+
+    .btn-tactical {
+      position: relative;
+      background: var(--accent-soft);
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      transition: all 0.2s ease;
+      font-weight: 600;
+    }
+    .btn-tactical:hover:not(:disabled) {
+      background: var(--cyan);
+      color: white;
+      box-shadow: 0 0 15px var(--cyan);
+    }
+    .btn-tactical:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .hazard-flicker { animation: flicker 1.5s infinite alternate; }
+    @keyframes flicker { from { opacity: 0.5; } to { opacity: 1; } }
+
+    .active-portal {
+      animation: pulse 2s infinite;
+      background: radial-gradient(circle, var(--cyan) 0%, transparent 70%);
+      opacity: 0.3;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.2; }
+      50% { transform: scale(1.05); opacity: 0.4; }
+      100% { transform: scale(0.95); opacity: 0.2; }
+    }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+      "react/": "https://esm.sh/react@^19.2.4/",
+      "react": "https://esm.sh/react@^19.2.4"
+    }
+  }
+  </script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
